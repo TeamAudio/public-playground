@@ -25,22 +25,18 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: TeamAudio/techaudio-web
-          ref: fba9c4fdacbf715df5f1f673c8577539c5d89c42
+          ref: 546eac9cc3ad61427f81154d7db7a1200c49da94
           fetch-depth: 0  # Fetch all history for accurate versioning
-          ssh-key: ${{ secrets.PUBLISH_RELEASE_SERVICE_KEY }}
+          token: ${{ secrets.PUBLISH_RELEASE_SERVICE_TOKEN}}
           path: techaudio-web
-      # - name: Call publish-release action
-      #   uses: webfactory/ssh-agent@v0.9.1
-      #   with:
-      #     ssh-private-key: ${{ secrets.PUBLISH_RELEASE_SERVICE_KEY }}
 
       - name: Call publish-release action
         uses: ./techaudio-web/.github/actions/publish-release
         with:
           project_id: reaspeech-lite
           project_name: ReaSpeech Lite
+          project_repository: ${{ github.repository }}
           version_tag: ${{ github.event.release.tag_name || 'manual-test-tag' }}
           release_body: ${{ github.event.release.body }}
-          deployment_key: ${{ secrets.PUBLISH_RELEASE_SERVICE_KEY }}
           service_token: ${{ secrets.PUBLISH_RELEASE_SERVICE_TOKEN }}
 
