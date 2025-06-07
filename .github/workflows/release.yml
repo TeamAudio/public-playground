@@ -1,19 +1,8 @@
 name: Publish GitHub Release Notes to website repo to create blog post
-# Trigger when a new release changes from pre-release to latest
 
 on:
   release:
     types: [released]
-  # workflow_dispatch: # add manual trigger
-  #   inputs:
-  #     release_name:
-  #       description: 'Test release name'
-  #       required: true
-  #       default: 'Test Release'
-  #     release_body:
-  #       description: 'Test release notes'
-  #       required: true
-  #       default: 'These are test release notes for manual triggering'
 
 jobs:
   publish-release-notes:
@@ -25,7 +14,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: TeamAudio/techaudio-web
-          ref: 80a4585dc15c9e48e7d7e8c0c434d53e9fa4d426
+          ref: 38cf1e300dd21dc57fb394b665744e06e460c047
           fetch-depth: 0  # Fetch all history for accurate versioning
           token: ${{ secrets.PUBLISH_RELEASE_SERVICE_TOKEN}}
           path: techaudio-web
