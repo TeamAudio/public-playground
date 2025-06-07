@@ -1,0 +1,31 @@
+name: Publish GitHub Release Notes to website repo to create blog post
+# Trigger when a new release changes from pre-release to latest
+
+on:
+  release:
+    # types: [edited] # we currently manually set release to latest 
+  # workflow_dispatch: # add manual trigger
+  #   inputs:
+  #     release_name:
+  #       description: 'Test release name'
+  #       required: true
+  #       default: 'Test Release'
+  #     release_body:
+  #       description: 'Test release notes'
+  #       required: true
+  #       default: 'These are test release notes for manual triggering'
+
+jobs:
+  publish-release-notes:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.release.prerelease == false }} 
+
+    steps:
+      - name: Call publish-release action
+        uses: TeamAudio/techaudio-web/.github/actions/publish-release@58b2e6dd7c75607b733582ada2ffbbf48e0073a2
+        with:
+          project-id: reaspeech-lite
+          project-name: ReaSpeech Lite
+          version-tag: ${{ github.event.release.tag_name || 'manual-test-tag' }}
+          release-body: ${{ github.event.release.body }}
+
