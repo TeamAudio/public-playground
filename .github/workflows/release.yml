@@ -26,11 +26,11 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.PUBLISH_RELEASE_SERVICE_KEY }}
 
-      - name: Call publish-release action
-        uses: TeamAudio/techaudio-web/.github/actions/publish-release@58b2e6dd7c75607b733582ada2ffbbf48e0073a2
-        with:
-          project-id: reaspeech-lite
-          project-name: ReaSpeech Lite
-          version-tag: ${{ github.event.release.tag_name || 'manual-test-tag' }}
-          release-body: ${{ github.event.release.body }}
+      # - name: Call publish-release action
+      #   uses: TeamAudio/techaudio-web/.github/actions/publish-release@58b2e6dd7c75607b733582ada2ffbbf48e0073a2
+      #   with:
+      #     project-id: reaspeech-lite
+      #     project-name: ReaSpeech Lite
+      #     version-tag: ${{ github.event.release.tag_name || 'manual-test-tag' }}
+      #     release-body: ${{ github.event.release.body }}
 
