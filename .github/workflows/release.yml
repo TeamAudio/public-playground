@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: TeamAudio/techaudio-web
-          ref: 7490909c0831f2f3a10100e54abec136161c9fb5
+          ref: fffcc624833e172bcfc5ae2ae52b45383bd127a3
           fetch-depth: 0  # Fetch all history for accurate versioning
           token: ${{ secrets.PUBLISH_RELEASE_SERVICE_TOKEN}}
           path: techaudio-web
