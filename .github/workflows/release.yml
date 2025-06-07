@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: TeamAudio/techaudio-web
-          ref: 14c6c88779826c64bbe608b02ecaba1c01ff02db
+          ref: fba9c4fdacbf715df5f1f673c8577539c5d89c42
           fetch-depth: 0  # Fetch all history for accurate versioning
           ssh-key: ${{ secrets.PUBLISH_RELEASE_SERVICE_KEY }}
           path: techaudio-web
@@ -42,4 +42,5 @@ jobs:
           version_tag: ${{ github.event.release.tag_name || 'manual-test-tag' }}
           release_body: ${{ github.event.release.body }}
           deployment_key: ${{ secrets.PUBLISH_RELEASE_SERVICE_KEY }}
+          service_token: ${{ secrets.PUBLISH_RELEASE_SERVICE_TOKEN }}
 
