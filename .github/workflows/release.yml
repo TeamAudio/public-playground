@@ -22,10 +22,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: TeamAudio/techaudio-web
-          ref: 0746f99e656c88494491cfe2d3260285a4ff6967
+          ref: 2e2ac2b7df220c82bbcc7aec7a303a4a448023ab
           fetch-depth: 0  # Fetch all history for accurate versioning
           ssh-key: ${{ secrets.PUBLISH_RELEASE_SERVICE_KEY }}
           path: techaudio-web
@@ -37,8 +37,9 @@ jobs:
       - name: Call publish-release action
         uses: ./techaudio-web/.github/actions/publish-release
         with:
-          project-id: reaspeech-lite
-          project-name: ReaSpeech Lite
-          version-tag: ${{ github.event.release.tag_name || 'manual-test-tag' }}
-          release-body: ${{ github.event.release.body }}
+          project_id: reaspeech-lite
+          project_name: ReaSpeech Lite
+          version_tag: ${{ github.event.release.tag_name || 'manual-test-tag' }}
+          release_body: ${{ github.event.release.body }}
+          deployment_key: ${{ secrets.PUBLISH_RELEASE_SERVICE_KEY }}
 
