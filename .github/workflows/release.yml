@@ -3,7 +3,7 @@ name: Publish GitHub Release Notes to website repo to create blog post
 
 on:
   release:
-    # types: [edited] # we currently manually set release to latest 
+    types: [released]
   # workflow_dispatch: # add manual trigger
   #   inputs:
   #     release_name:
