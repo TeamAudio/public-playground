@@ -154,7 +154,8 @@ def main():
 
     # if not run_command(f'git commit -m "Release {tag}"', "Committing changes"):
     # if not run_command(f'git commit -m "new release"', "Committing changes"):
-    if not subprocess.run(["git", "commit", "-m", f"Release {tag}"], check=True)        sys.exit(1)
+    if not subprocess.run(["git", "commit", "-m", f"Release {tag}"], check=True):
+        sys.exit(1)
 
     # Create tag
     if not run_command(f"git tag {tag}", f"Creating tag {tag}"):
