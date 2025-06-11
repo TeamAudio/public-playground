@@ -124,8 +124,14 @@ def main():
     if current_version:
         print(f"Current version: {current_version}")
 
+    def sanitize_version(version):
+        """Remove any unwanted characters from version string"""
+        # Strip whitespace and quotes
+        return version.strip().strip("'").strip('"')
+
     # Get version from user
-    version = input("Enter the version number (e.g. 1.2.3): ").strip()
+    # version = input("Enter the version number (e.g. 1.2.3): ").strip()
+    version = sanitize_version(input("Enter the version number (e.g. 1.2.3): "))
 
     # Validate version format
     if not validate_version(version):
