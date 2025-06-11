@@ -130,7 +130,7 @@ def main():
         return version.strip().strip("'").strip('"')
 
     # Get version from user
-    # version = input("Enter the version number (e.g. 1.2.3): ").strip()
+    version = input("Enter the version number (e.g. 1.2.3): ").strip()
     version = sanitize_version(input("Enter the version number (e.g. 1.2.3): "))
 
     # Validate version format
@@ -152,8 +152,9 @@ def main():
     if not run_command("git add VERSION", "Staging VERSION file"):
         sys.exit(1)
 
-    if not run_command(f"git commit -m 'Release {tag}'", "Committing changes"):
-        sys.exit(1)
+    # if not run_command(f'git commit -m "Release {tag}"', "Committing changes"):
+    # if not run_command(f'git commit -m "new release"', "Committing changes"):
+    if not subprocess.run(["git", "commit", "-m", f"Release {tag}"], check=True)        sys.exit(1)
 
     # Create tag
     if not run_command(f"git tag {tag}", f"Creating tag {tag}"):
