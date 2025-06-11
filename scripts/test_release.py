@@ -104,7 +104,7 @@ def run_command(command, description):
                                check=True,
                                stdout=subprocess.PIPE, 
                                stderr=subprocess.PIPE,
-                               text=True)  
+                               universal_newlines=True)  
                                
         print(f"{description}: Success")
         if result.stdout:
