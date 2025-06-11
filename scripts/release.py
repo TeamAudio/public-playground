@@ -93,10 +93,6 @@ def run_command(command, description):
         print("DRY RUN: Command not executed.")
         return True
     try:
-        # result = subprocess.run(command, shell=True, check=True,
-        #                        stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-        #                        universal_newlines=True)
-        # If command is a string, convert to list of arguments
         if isinstance(command, str):
             import shlex
             command_args = shlex.split(command)
@@ -104,11 +100,11 @@ def run_command(command, description):
             command_args = command
             
         result = subprocess.run(command_args, 
-                               shell=False,  # Avoid shell interpretation issues
+                               shell=False, # Avoids shell interpretation issues on Windows 
                                check=True,
                                stdout=subprocess.PIPE, 
                                stderr=subprocess.PIPE,
-                               text=True)  # Instead of universal_newlines
+                               text=True)  
                                
         print(f"{description}: Success")
         if result.stdout:
@@ -162,9 +158,7 @@ def main():
 
     # Trying to fix error with extra quote in commit message
     print("Checking different command format for commit.")
-    if not run_command(f'git commit -m "Release {tag}"', "Committing changes"):
-    # if not run_command(f'git commit -m "new release"', "Committing changes"):
-    # if not subprocess.run(["git", "commit", "-m", f"Release {tag}"], check=True):
+    if not run_command(f"git commit -m 'Release {tag}'", "Committing changes"):
         sys.exit(1)
 
     # Create tag
