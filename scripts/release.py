@@ -8,7 +8,7 @@ import subprocess
 import sys
 
 # Set to True for dry run, False for actual execution
-DRY_RUN = False
+DRY_RUN = True
 
 def check_current_branch():
     """Verify that we are on the main branch"""
@@ -124,14 +124,8 @@ def main():
     if current_version:
         print(f"Current version: {current_version}")
 
-    def sanitize_version(version):
-        """Remove any unwanted characters from version string"""
-        # Strip whitespace and quotes
-        return version.strip().strip("'").strip('"')
-
     # Get version from user
     version = input("Enter the version number (e.g. 1.2.3): ").strip()
-    version = sanitize_version(input("Enter the version number (e.g. 1.2.3): "))
 
     # Validate version format
     if not validate_version(version):
@@ -152,6 +146,7 @@ def main():
     if not run_command("git add VERSION", "Staging VERSION file"):
         sys.exit(1)
 
+    # Trying to fix error with extra quote in commit message
     # if not run_command(f'git commit -m "Release {tag}"', "Committing changes"):
     # if not run_command(f'git commit -m "new release"', "Committing changes"):
     if not subprocess.run(["git", "commit", "-m", f"Release {tag}"], check=True):
