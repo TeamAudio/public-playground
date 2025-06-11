@@ -2,7 +2,25 @@ name: Publish GitHub Release Notes to website repo to create blog post
 
 on:
   release:
-    types: [released]
+    types: [edited] 
+  workflow_dispatch: 
+    inputs:
+      project_id:
+        description: 'Project ID'
+        required: true
+        default: 'Test Project'
+      project_name:
+        description: 'Test project name'
+        required: true
+        default: 'Test Project Name'
+      project_repository:
+        description: 'GitHub repository where the project is hosted'
+        required: true
+        default: 'Test Repo'
+      release_body:
+        description: 'Release body content'
+        required: true
+        default: 'Release body content goes here'
 
 jobs:
   publish-release-notes:
