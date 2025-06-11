@@ -8,7 +8,7 @@ import subprocess
 import sys
 
 # Set to True for dry run, False for actual execution
-DRY_RUN = True
+DRY_RUN = False
 
 def check_current_branch():
     """Verify that we are on the main branch"""
