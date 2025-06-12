@@ -93,12 +93,6 @@ def run_command(command, description):
         print("DRY RUN: Command not executed.")
         return True
     try:
-    #     if isinstance(command, str):
-    #         import shlex
-    #         command_args = shlex.split(command)
-    #     else:
-    #         command_args = command
-            
         result = subprocess.run(command, 
                                shell=True, 
                                check=True,
@@ -153,13 +147,9 @@ def main():
     tag = f"v{version}"
 
     # Stage VERSION file and commit
-    # if not run_command("git add VERSION", "Staging VERSION file"):
     if not run_command(['git', 'add', 'VERSION'], 'Staging VERSION file'):
         sys.exit(1)
 
-    # Trying to fix error with extra quote in commit message
-    print("Checking different command format for commit.")
-    # if not run_command(f"git commit -m 'Release {tag}'", "Committing changes"):
     if not run_command(['git', 'commit', '-m', f'Release {tag}'], 'Committing changes'):
         sys.exit(1)
 
