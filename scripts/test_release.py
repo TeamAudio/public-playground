@@ -147,21 +147,21 @@ def main():
     tag = f"v{version}"
 
     # Stage VERSION file and commit
-    if not run_command(['git', 'add', 'VERSION'], 'Staging VERSION file'):
+    if not run_command(["git", "add", "VERSION"], "Staging VERSION file"):
         sys.exit(1)
 
-    if not run_command(['git', 'commit', '-m', f'Release {tag}'], 'Committing changes'):
+    if not run_command(["git", "commit", "-m", f"Release {tag}"], "Committing changes"):
         sys.exit(1)
 
     # Create tag
-    if not run_command(['git', 'tag', tag], f"Creating tag {tag}"):
+    if not run_command(["git", "tag", tag], f"Creating tag {tag}"):
         sys.exit(1)
 
     # Push to origin
-    if not run_command(['git', 'push', 'origin', 'main'], "Pushing to main branch"):
+    if not run_command(["git", "push", "origin", "main"], "Pushing to main branch"):
         sys.exit(1)
 
-    if not run_command(['git', 'push', 'origin', tag], f"Pushing tag {tag}"):
+    if not run_command(["git", "push", "origin", tag], f"Pushing tag {tag}"):
         sys.exit(1)
 
     print(f"\nRelease {version} completed successfully!")
