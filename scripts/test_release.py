@@ -88,13 +88,13 @@ def validate_version(version):
 
 def run_command(command, description):
     """Run a shell command and print the result"""
-    print(f"Running: {command}")
+    print(f"Running: {' '.join(command)}")
     if DRY_RUN:
         print("DRY RUN: Command not executed.")
         return True
     try:
         result = subprocess.run(command, 
-                               shell=True, 
+                               shell=False, 
                                check=True,
                                stdout=subprocess.PIPE, 
                                stderr=subprocess.PIPE,
